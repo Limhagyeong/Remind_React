@@ -42,9 +42,11 @@ function Nav(props) {
     return (
       <li key={t.id}>
         <a
+          // id={t.id}
           href={'/read/' + t.id}
           onClick={(event) => {
             event.preventDefault();
+            // props.onShow(event.target.id);
             props.onShow(t.id);
           }}
         >
