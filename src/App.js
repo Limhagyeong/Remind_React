@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 function Article(props) {
   // console.log(props);
   return (
@@ -62,26 +63,48 @@ function Nav(props) {
   );
 }
 function App() {
+  // const _mode = useState('WELCOME');
+  // console.log(_mode);
+  // const mode = _mode[0];
+  // const setMode = _mode[1];
+
+  const [mode, setMode] = useState('WELCOME'); // mode라는 상태변수를 WELCOME으로 초기화하고 setMode함수를 통해 mode값을 변경 + 변화를 감지해서 리렌더링
+  const [selectedId, setId] = useState(null);
   const topics = [
     { id: 1, title: 'html', body: 'html is ...' },
     { id: 2, title: 'css', body: 'css is ...' },
     { id: 3, title: 'javascript', body: 'javascript is ...' },
   ];
+  let content = null;
+  if (mode === 'WELCOME') {
+    content = <Article title="Welcome" body="Hello, WEB"></Article>;
+  } else if (mode === 'READ') {
+    let title,
+      body = null;
+    for (let i = 0; i < topics.length; i++) {
+      if (topics[i].id === selectedId) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = <Article title={title} body={body}></Article>;
+  }
   return (
     <div>
       <Header
         title="WEB"
         onChange={() => {
-          alert('Header');
+          setMode('WELCOME');
         }}
       ></Header>
       <Nav
         topics={topics}
-        onShow={(id) => {
-          alert(id);
+        onShow={(selectedId) => {
+          setMode('READ');
+          setId(selectedId);
         }}
       ></Nav>
-      <Article title="Welcome" body="Hello, WEB"></Article>
+      {content}
     </div>
   );
 }
