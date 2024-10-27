@@ -62,6 +62,31 @@ function Nav(props) {
     </nav>
   );
 }
+function Create(props) {
+  return (
+    <article>
+      <h2>Create</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          const title = event.target.title.value;
+          const body = event.target.body.value;
+          props.onCreate(title, body);
+        }}
+      >
+        <p>
+          <input type="text" name="title" placeholder="title" />
+        </p>
+        <p>
+          <textarea name="body" placeholder="body"></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Create"></input>
+        </p>
+      </form>
+    </article>
+  );
+}
 function App() {
   // const _mode = useState('WELCOME');
   // console.log(_mode);
@@ -70,11 +95,13 @@ function App() {
 
   const [mode, setMode] = useState('WELCOME'); // mode라는 상태변수를 WELCOME으로 초기화하고 setMode함수를 통해 mode값을 변경 + 변화를 감지해서 리렌더링
   const [selectedId, setId] = useState(null);
-  const topics = [
+  const [nextId, setNextId] = useState(4);
+  const [topics, setTopics] = useState([
     { id: 1, title: 'html', body: 'html is ...' },
     { id: 2, title: 'css', body: 'css is ...' },
     { id: 3, title: 'javascript', body: 'javascript is ...' },
-  ];
+  ]);
+
   let content = null;
   if (mode === 'WELCOME') {
     content = <Article title="Welcome" body="Hello, WEB"></Article>;
@@ -88,6 +115,20 @@ function App() {
       }
     }
     content = <Article title={title} body={body}></Article>;
+  } else if (mode === 'CREATE') {
+    content = (
+      <Create
+        onCreate={(InputTitle, InputBody) => {
+          const newTopic = { id: nextId, title: InputTitle, body: InputBody };
+          /*
+          topics.push(newTopic);
+          setTopics(topics); // => 참조값은 그대로이기 때문에 리액트가 상태 변화 감지 못함 (리렌더링X)
+          */
+          setTopics((topics) => [...topics, newTopic]); // 깊은 복사 후 배열형태로 추가 (참조값 변경 O)
+          setNextId(nextId + 1); // id 값 증가
+        }}
+      ></Create>
+    ); // Create 컴포넌트를 띄움
   }
   return (
     <div>
@@ -102,9 +143,19 @@ function App() {
         onShow={(selectedId) => {
           setMode('READ');
           setId(selectedId);
+          console.log(topics);
         }}
       ></Nav>
       {content}
+      <a
+        href="/create"
+        onClick={(event) => {
+          event.preventDefault();
+          setMode('CREATE');
+        }}
+      >
+        Create
+      </a>
     </div>
   );
 }
