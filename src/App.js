@@ -94,7 +94,7 @@ function App() {
   // const setMode = _mode[1];
 
   const [mode, setMode] = useState('WELCOME'); // mode라는 상태변수를 WELCOME으로 초기화하고 setMode함수를 통해 mode값을 변경 + 변화를 감지해서 리렌더링
-  const [selectedId, setId] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
   const [nextId, setNextId] = useState(4);
   const [topics, setTopics] = useState([
     { id: 1, title: 'html', body: 'html is ...' },
@@ -125,7 +125,10 @@ function App() {
           setTopics(topics); // => 참조값은 그대로이기 때문에 리액트가 상태 변화 감지 못함 (리렌더링X)
           */
           setTopics((topics) => [...topics, newTopic]); // 깊은 복사 후 배열형태로 추가 (참조값 변경 O)
-          setNextId(nextId + 1); // id 값 증가
+
+          setMode('READ'); // 추가 후 content 변경
+          setSelectedId(nextId); // 추가 된 내용 보여주기
+          setNextId(nextId + 1); // 아이디값 1 증가
         }}
       ></Create>
     ); // Create 컴포넌트를 띄움
@@ -142,7 +145,7 @@ function App() {
         topics={topics}
         onShow={(selectedId) => {
           setMode('READ');
-          setId(selectedId);
+          setSelectedId(selectedId);
           console.log(topics);
         }}
       ></Nav>
