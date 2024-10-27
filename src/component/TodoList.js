@@ -7,17 +7,25 @@ function TodoList() {
 
   const addTask = () => {
     if (task.trim() !== '') {
-      setTasks([...tasks, task]);
+      const newTask = { id: tasks.length, task: task };
+      setTasks([...tasks, newTask]);
       setTask('');
-      console.log(tasks);
+      console.log([...tasks, newTask]);
     }
   };
 
   function ShowTodoList() {
     return (
       <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>{task}</li>
+        {tasks.map((eachTask) => (
+          <>
+            <li className="eachList" key={eachTask.id}>
+              <input type="checkbox" class="item-checkbox" />
+              {eachTask.task}
+              <button>update</button>
+              <button>Delete</button>
+            </li>
+          </>
         ))}
       </ul>
     );
