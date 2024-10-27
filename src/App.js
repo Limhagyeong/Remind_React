@@ -163,17 +163,36 @@ function App() {
     }
     content = <Article title={title} body={body}></Article>;
     contextControl = (
-      <li>
-        <a
-          href={'/update/' + selectedId}
-          onClick={(event) => {
-            event.preventDefault();
-            setMode('UPDATE');
-          }}
-        >
-          Update
-        </a>
-      </li>
+      <>
+        <li>
+          <a
+            href={'/update/' + selectedId}
+            onClick={(event) => {
+              event.preventDefault();
+              setMode('UPDATE');
+            }}
+          >
+            Update
+          </a>
+        </li>
+        <li>
+          <input
+            type="button"
+            value="Delete"
+            onClick={() => {
+              const newTopics = [];
+              for (let i = 0; i < topics.length; i++) {
+                if (topics[i].id !== selectedId) {
+                  newTopics.push(topics[i]);
+                }
+              }
+              setTopics(newTopics);
+              alert('삭제 완료');
+              setMode('WELCOME');
+            }}
+          />
+        </li>
+      </>
     );
   } else if (mode === 'CREATE') {
     content = (
