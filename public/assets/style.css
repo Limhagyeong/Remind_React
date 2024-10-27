@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.TodoList {
+  text-align: center;
+}
+.Header {
+  margin-top: 80px;
+}
+.TodoList > .Inputbar {
+  width: 500px;
+  height: 30px;
+}
+.TodoList > .AddBtn {
+  width: 80px;
+  height: 33px;
+  font-size: 16px;
+  margin-top: 10px;
+}
