@@ -50,16 +50,15 @@ function TodoList() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          const ChangeTask = [
-            { id: props.selectedId, task: event.target.value },
-          ];
-          console.log('ch:'.ChangeTask);
+          const ChangeTask = { id: props.id, task: updateTask };
           for (let i = 0; i < tasks.length; i++) {
+            console.log(tasks[i].id);
+            console.log(ChangeTask.id);
             if (tasks[i].id === ChangeTask.id) {
               tasks[i] = ChangeTask;
             }
           }
-          // console.log(tasks);
+          console.log(tasks);
           setUpdateMode('N');
         }}
       >
