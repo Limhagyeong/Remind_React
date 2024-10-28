@@ -5,7 +5,7 @@ function TodoList() {
   const [tasks, setTasks] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [updateMode, setUpdateMode] = useState('N');
-  const [deleteId, setDeleteId] = useState('');
+  const [deleteId, setDeleteId] = useState(null);
 
   const addTask = () => {
     if (task.trim() !== '') {
