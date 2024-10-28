@@ -8,11 +8,11 @@
 .Header {
   margin-top: 80px;
 }
-.TodoList > .Inputbar {
+.TodoList > form > .Inputbar {
   width: 500px;
   height: 30px;
 }
-.TodoList > .AddBtn {
+.TodoList > form > .AddBtn {
   width: 80px;
   height: 33px;
   font-size: 16px;

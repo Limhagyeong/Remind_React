@@ -5,6 +5,7 @@ function TodoList() {
   const [tasks, setTasks] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [updateMode, setUpdateMode] = useState('N');
+  const [deleteId, setDeleteId] = useState('');
 
   const addTask = () => {
     if (task.trim() !== '') {
@@ -20,7 +21,13 @@ function TodoList() {
         {tasks.map((eachTask) => (
           <>
             <li className="eachList" key={eachTask.id}>
-              <input type="checkbox" className="item-checkbox" />
+              <input
+                type="checkbox"
+                className="item-checkbox"
+                onClick={() => {
+                  setDeleteId(eachTask.id);
+                }}
+              />
               {eachTask.task}
               {updateMode === 'N' && (
                 <button
@@ -33,7 +40,25 @@ function TodoList() {
                 </button>
               )}
 
-              <button>Delete</button>
+              <button
+                onClick={() => {
+                  if (deleteId === '') {
+                    alert('삭제할 일정을 선택하세요');
+                  } else {
+                    const newTasks = [];
+                    for (let i = 0; i < tasks.length; i++) {
+                      if (tasks[i].id !== deleteId) {
+                        newTasks.push(tasks[i]);
+                      }
+                    }
+                    setTasks(newTasks);
+                    setDeleteId('');
+                    alert('삭제 완료');
+                  }
+                }}
+              >
+                Delete
+              </button>
             </li>
             {selectedId === eachTask.id && updateMode === 'Y' && (
               <Update id={selectedId} task={eachTask.task} />
@@ -78,21 +103,26 @@ function TodoList() {
     );
   }
 
-  const saveUpdate = () => {};
-
   return (
     <div className="TodoList">
-      <input
-        className="Inputbar"
-        type="text"
-        name="InputTodo"
-        placeholder="Add a task..."
-        value={task}
-        onChange={(event) => {
-          setTask(event.target.value);
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          addTask();
         }}
-      />
-      <input className="AddBtn" type="button" value="ADD" onClick={addTask} />
+      >
+        <input
+          className="Inputbar"
+          type="text"
+          name="InputTodo"
+          placeholder="Add a task..."
+          value={task}
+          onChange={(event) => {
+            setTask(event.target.value);
+          }}
+        />
+        <input className="AddBtn" type="submit" value="ADD" />
+      </form>
       <ShowTodoList />
     </div>
   );
