@@ -51,14 +51,17 @@ function TodoList() {
         onSubmit={(event) => {
           event.preventDefault();
           const ChangeTask = { id: props.id, task: updateTask };
-          for (let i = 0; i < tasks.length; i++) {
-            console.log(tasks[i].id);
-            console.log(ChangeTask.id);
-            if (tasks[i].id === ChangeTask.id) {
-              tasks[i] = ChangeTask;
+          const newTask = [...tasks]; // 복사해서 추가!
+          // console.log('newTask', newTask);
+          for (let i = 0; i < newTask.length; i++) {
+            // console.log(newTask[i].id);
+            // console.log(ChangeTask.id);
+            if (newTask[i].id === ChangeTask.id) {
+              newTask[i] = ChangeTask;
+              break; // 불필요한 순회 X
             }
           }
-          console.log(tasks);
+          setTasks(newTask);
           setUpdateMode('N');
         }}
       >
