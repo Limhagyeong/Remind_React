@@ -32,6 +32,7 @@ function TodoList() {
               {updateMode === 'N' && (
                 <button
                   onClick={() => {
+                    console.log(deleteId);
                     setSelectedId(eachTask.id);
                     setUpdateMode('Y');
                   }}
@@ -42,7 +43,7 @@ function TodoList() {
 
               <button
                 onClick={() => {
-                  if (deleteId === '') {
+                  if (deleteId === null) {
                     alert('삭제할 일정을 선택하세요');
                   } else {
                     const newTasks = [];
