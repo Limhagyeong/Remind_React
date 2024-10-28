@@ -53,7 +53,6 @@ function TodoList() {
                       }
                     }
                     setTasks(newTasks);
-                    setDeleteId('');
                     alert('삭제 완료');
                   }
                 }}
