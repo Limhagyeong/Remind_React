@@ -5,7 +5,6 @@ function ShowList(props) {
   const [selectedId, setSelectedId] = useState(null);
   const [updateMode, setUpdateMode] = useState('N');
   const [deleteId, setDeleteId] = useState(null);
-  console.log(props);
   return (
     <ul>
       {props.tasks.map((eachTask) => (
@@ -15,14 +14,18 @@ function ShowList(props) {
               type="checkbox"
               className="item-checkbox"
               onClick={() => {
-                setDeleteId(eachTask.id);
+                if (deleteId === eachTask.id) {
+                  setDeleteId(null); // null로 초기화 => 체크 해제
+                } else {
+                  setDeleteId(eachTask.id); // deleteId === eachTask.id => 체크
+                }
+                console.log(deleteId);
               }}
             />
             {eachTask.task}
             {updateMode === 'N' && (
               <button
                 onClick={() => {
-                  console.log(deleteId);
                   setSelectedId(eachTask.id);
                   setUpdateMode('Y');
                 }}
@@ -33,6 +36,7 @@ function ShowList(props) {
 
             <button
               onClick={() => {
+                console.log(deleteId);
                 if (deleteId === null) {
                   alert('삭제할 일정을 선택하세요');
                 } else {
