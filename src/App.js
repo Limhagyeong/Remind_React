@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import Header from './component/Header';
-import TodoList from './component/TodoList';
+import TodoList from './component/AddTodoList';
 
 function App() {
   return (
