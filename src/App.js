@@ -4,7 +4,7 @@ import Header from './component/Header';
 import TodoList from './component/AddTodoList';
 import Say from './study/say';
 function App() {
-  const [isIn, setIsIn] = useState('N');
+  const [isIn, setIsIn] = useState('');
   return (
     <Fragment>
       <Say setIsIn={setIsIn} />
