@@ -4,6 +4,7 @@ import Map from './map';
 import UseState from './useState';
 import UseEffect from './useEffect';
 import UseReducer from './useReducer';
+import UseReducer2 from './useReducer_2';
 
 // 함수 안에 선언하면 렌더링 될때마다 재정의됨 => 불필요
 const initialState = { msg: '', mode: '' };
@@ -54,6 +55,11 @@ function Control(props) {
       <button onClick={() => dispatch({ type: 'MOVE', payload: 'usereducer' })}>
         useReducer
       </button>
+      <button
+        onClick={() => dispatch({ type: 'MOVE', payload: 'usereducer2' })}
+      >
+        useReducer2
+      </button>
 
       <h3>{msg}</h3>
       {mode === 'input' && <Input />}
@@ -61,6 +67,7 @@ function Control(props) {
       {mode === 'usestate' && <UseState />}
       {mode === 'useeffect' && <UseEffect />}
       {mode === 'usereducer' && <UseReducer />}
+      {mode === 'usereducer2' && <UseReducer2 />}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 // useReducer 사용 시 직접적으로 상태를 관리해주지 않아도 된다
 // reducer에 모아서 관리해주는 느낌 (useState와 비교했을 때)
 // 흐름
-// event  => action => dispatch => reducer => state
+// event  => action => dispatch => reducer => value
 function UseReducer() {
   const reducer = (value, action) => {
     // action, type에 따라 다른 작업 수행
