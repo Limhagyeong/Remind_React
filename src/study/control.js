@@ -3,6 +3,7 @@ import Input from './input';
 import Map from './map';
 import UseState from './useState';
 import UseEffect from './useEffect';
+import UseReducer from './useReducer';
 
 function Control(props) {
   const [msg, setMsg] = useState('');
@@ -43,6 +44,12 @@ function Control(props) {
     setMsg('');
   };
 
+  const MoveUseReducer = () => {
+    props.setIsIn('N');
+    setMode('usereducer');
+    setMsg('');
+  };
+
   return (
     <div>
       <button onClick={onClickEnter}>입장</button>
@@ -51,12 +58,14 @@ function Control(props) {
       <button onClick={MoveMap}>Map</button>
       <button onClick={MoveUseState}>useState</button>
       <button onClick={MoveUseEffect}>useEffect</button>
+      <button onClick={MoveUseReducer}>useReducer</button>
 
       <h3>{msg}</h3>
       {mode === 'input' && <Input />}
       {mode === 'map' && <Map />}
       {mode === 'usestate' && <UseState />}
       {mode === 'useeffect' && <UseEffect />}
+      {mode === 'usereducer' && <UseReducer />}
     </div>
   );
 }
