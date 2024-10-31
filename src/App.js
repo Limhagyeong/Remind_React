@@ -2,12 +2,12 @@ import { Fragment } from 'react';
 import { useState } from 'react';
 import Header from './component/Header';
 import TodoList from './component/AddTodoList';
-import Say from './study/say';
+import Control from './study/control';
 function App() {
   const [isIn, setIsIn] = useState('');
   return (
     <Fragment>
-      <Say setIsIn={setIsIn} />
+      <Control setIsIn={setIsIn} />
       {isIn === 'Y' && (
         <>
           <Header name="Todo-List" />

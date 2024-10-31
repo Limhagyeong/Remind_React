@@ -1,36 +1,45 @@
 import { useState } from 'react';
 import Input from './input';
+import Map from './map';
 
-function Say(props) {
+function Control(props) {
   const [msg, setMsg] = useState('');
-  const [inputMode, setInputMode] = useState('N');
+  const [mode, setMode] = useState('');
   const onClickEnter = () => {
     props.setIsIn('Y');
     setMsg('안녕하세요');
-    setInputMode('N');
+    setMode('');
   };
 
   const onClickLeave = () => {
     props.setIsIn('N');
     setMsg('안녕히가세요');
-    setInputMode('N');
+    setMode('');
   };
 
   const MoveInput = () => {
     props.setIsIn('N');
     setMsg('');
-    setInputMode('Y');
+    setMode('input');
+  };
+
+  const MoveMap = () => {
+    props.setIsIn('N');
+    setMode('map');
+    setMsg('');
   };
 
   return (
     <div>
       <button onClick={onClickEnter}>입장</button>
       <button onClick={onClickLeave}>퇴장</button>
-      <button onClick={MoveInput}>입력</button>
+      <button onClick={MoveInput}>Input</button>
+      <button onClick={MoveMap}>Map</button>
       <h3>{msg}</h3>
-      {inputMode === 'Y' && <Input />}
+      {mode === 'input' && <Input />}
+      {mode === 'map' && <Map />}
     </div>
   );
 }
 
-export default Say;
+export default Control;
