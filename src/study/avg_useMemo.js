@@ -19,6 +19,15 @@ import { useState, useMemo } from 'react';
  *
  */
 
+/**
+ * useMemo / useEffect
+ * 공통점 : 의존성 배열을 사용 상태변화 감지하고 동작 수행
+ * useEffect : 사이드 이펙트를 처리하기위한 목적으로 사용
+ *             => 렌더링 외부에서 발생하는 작업을 처리하는 데 사용 (API 호출, 이벤트 리스너 설정, 타이머 설정 등)
+ * useMemo : 계산 로직의 최적화하기 위한 목적으로 사용
+ *             => CPU 집약적인 계산이나 큰 데이터 구조를 처리할 때 계산 결과를 재사용하여 불필요한 계산을 피함
+ */
+
 const getAvg = (nums) => {
   console.log('평균값 계산 중');
   if (nums.length === 0) return 0;
