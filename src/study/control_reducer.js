@@ -5,6 +5,8 @@ import UseState from './useState';
 import UseEffect from './useEffect';
 import UseReducer from './useReducer';
 import UseReducer2 from './useReducer_2';
+import AvgUseState from './avg_useState';
+import AvgUseMemo from './avg_useMemo';
 
 // 함수 안에 선언하면 렌더링 될때마다 재정의됨 => 불필요
 const initialState = { msg: '', mode: '' };
@@ -60,6 +62,14 @@ function Control(props) {
       >
         useReducer2
       </button>
+      <button
+        onClick={() => dispatch({ type: 'MOVE', payload: 'avgusestate' })}
+      >
+        avgUseState
+      </button>
+      <button onClick={() => dispatch({ type: 'MOVE', payload: 'avgusememo' })}>
+        avgUseMemo
+      </button>
 
       <h3>{msg}</h3>
       {mode === 'input' && <Input />}
@@ -68,6 +78,8 @@ function Control(props) {
       {mode === 'useeffect' && <UseEffect />}
       {mode === 'usereducer' && <UseReducer />}
       {mode === 'usereducer2' && <UseReducer2 />}
+      {mode === 'avgusestate' && <AvgUseState />}
+      {mode === 'avgusememo' && <AvgUseMemo />}
     </div>
   );
 }
