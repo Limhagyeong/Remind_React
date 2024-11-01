@@ -45,6 +45,7 @@ function AvgUseMemo() {
   };
 
   const onInsert = () => {
+    console.log('insert');
     const nextList = list.concat(parseInt(num));
     setList(nextList);
     setNum('');
