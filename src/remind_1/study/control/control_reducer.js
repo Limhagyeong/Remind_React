@@ -50,63 +50,30 @@ function Control(props) {
     }
   };
 
+  const handleMove = (newMode) => {
+    props.setIsIn('N');
+    dispatch({ type: 'MOVE', payload: newMode });
+  };
+
   return (
     <>
       <div ref={topRef}>
         <button onClick={onClickEnter}>입장</button>
         <button onClick={onClickLeave}>퇴장</button>
-        <button onClick={() => dispatch({ type: 'MOVE', payload: 'input' })}>
-          Input
-        </button>
-        <button onClick={() => dispatch({ type: 'MOVE', payload: 'map' })}>
-          Map
-        </button>
-        <button onClick={() => dispatch({ type: 'MOVE', payload: 'usestate' })}>
-          useState
-        </button>
-        <button
-          onClick={() => dispatch({ type: 'MOVE', payload: 'useeffect' })}
-        >
-          useEffect
-        </button>
-        <button
-          onClick={() => dispatch({ type: 'MOVE', payload: 'usereducer' })}
-        >
-          useReducer
-        </button>
-        <button
-          onClick={() => dispatch({ type: 'MOVE', payload: 'usereducer2' })}
-        >
-          useReducer2
-        </button>
-        <button
-          onClick={() => dispatch({ type: 'MOVE', payload: 'avgusestate' })}
-        >
-          avgUseState
-        </button>
-        <button
-          onClick={() => dispatch({ type: 'MOVE', payload: 'avgusememo' })}
-        >
-          avgUseMemo
-        </button>
-        <button
-          onClick={() => dispatch({ type: 'MOVE', payload: 'avgusecallback' })}
-        >
+        <button onClick={() => handleMove('input')}>Input</button>
+        <button onClick={() => handleMove('map')}>Map</button>
+        <button onClick={() => handleMove('usestate')}>useState</button>
+        <button onClick={() => handleMove('useeffect')}>useEffect</button>
+        <button onClick={() => handleMove('usereducer')}>useReducer</button>
+        <button onClick={() => handleMove('usereducer2')}>useReducer2</button>
+        <button onClick={() => handleMove('avgusestate')}>avgUseState</button>
+        <button onClick={() => handleMove('avgusememo')}>avgUseMemo</button>
+        <button onClick={() => handleMove('avgusecallback')}>
           avgUseCallback
-        </button>{' '}
-        <button
-          onClick={() => dispatch({ type: 'MOVE', payload: 'avguseref' })}
-        >
-          avgUseRef
         </button>
-        <button onClick={() => dispatch({ type: 'MOVE', payload: 'scroll' })}>
-          scroll
-        </button>
-        <button
-          onClick={() => dispatch({ type: 'MOVE', payload: 'useinputs' })}
-        >
-          useinputs
-        </button>
+        <button onClick={() => handleMove('avguseref')}>avgUseRef</button>
+        <button onClick={() => handleMove('scroll')}>scroll</button>
+        <button onClick={() => handleMove('useinputs')}>useinputs</button>
         <h3>{msg}</h3>
         {mode === 'input' && <Input />}
         {mode === 'map' && <Map />}
