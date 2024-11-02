@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Input from './input';
-import Map from './map';
-import UseState from './useState';
-import UseEffect from './useEffect';
-import UseReducer from './useReducer';
+import Input from '../input';
+import Map from '../map';
+import UseState from '../hook/useState';
+import UseEffect from '../hook/useEffect';
+import UseReducer from '../hook/useReducer';
 
 function Control(props) {
   const [msg, setMsg] = useState('');

@@ -1,15 +1,16 @@
 import { useReducer, useRef } from 'react';
-import Input from './input';
-import Map from './map';
-import UseState from './useState';
-import UseEffect from './useEffect';
-import UseReducer from './useReducer';
-import UseReducer2 from './useReducer_2';
-import AvgUseState from './avg_useState';
-import AvgUseMemo from './avg_useMemo';
-import AvgUseCallback from './avg_useCallback';
-import AvgUseRef from './avg_useRef';
-import Scroll from './scroll';
+import Input from '../input';
+import Map from '../map';
+import UseState from '../hook/useState';
+import UseEffect from '../hook/useEffect';
+import UseReducer from '../hook/useReducer';
+import UseReducer2 from '../hook/useReducer_2';
+import AvgUseState from '../avg/avg_useState';
+import AvgUseMemo from '../avg/avg_useMemo';
+import AvgUseCallback from '../avg/avg_useCallback';
+import AvgUseRef from '../avg/avg_useRef';
+import Scroll from '../scroll/scroll';
+import UseInputs from '../customHook/useInputs';
 
 // 함수 안에 선언하면 렌더링 될때마다 재정의됨 => 불필요
 const initialState = { msg: '', mode: '' };
@@ -101,6 +102,11 @@ function Control(props) {
         <button onClick={() => dispatch({ type: 'MOVE', payload: 'scroll' })}>
           scroll
         </button>
+        <button
+          onClick={() => dispatch({ type: 'MOVE', payload: 'useinputs' })}
+        >
+          useinputs
+        </button>
         <h3>{msg}</h3>
         {mode === 'input' && <Input />}
         {mode === 'map' && <Map />}
@@ -118,6 +124,7 @@ function Control(props) {
             <button onClick={toTheTop}>상단으로 이동하기</button>
           </>
         )}
+        {mode === 'useinputs' && <UseInputs />}
       </div>
     </>
   );
